@@ -1,0 +1,22 @@
+.head {
+    display: flex;
+    background-color: #ff0000;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+
+.head.left {
+    text-align: left;
+}
+
+#displaynav ul {
+    list-style: none;
+    justify-content: space-between;
+    column-gap: 5rem;
+    display: inline-flex;
+}
+
+.head.right {
+    text-align: right;
+}

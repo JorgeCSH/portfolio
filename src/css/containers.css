@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    font-family: 'Arial', 'monospace';
+    margin: 2px;
+}
+
+.container.bigger-container {
+    padding: 20px;
+}
+
+.container.mini-container {
+    border-radius: 12px;
+    text-align: center;
+    display: inline-block;
+}
+
+.container.mini-container.box1 {
+    background-color: #ff0000;
+}
+
+.container.mini-container.box2 {
+    background-color: #0000ff;
+}
+
+.container.mini-container.box3 {
+    background-color: #00ff00;
+}

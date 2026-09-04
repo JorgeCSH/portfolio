@@ -1,118 +1,64 @@
-import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Header, type ViewKey } from './components/Header';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { AboutMe } from './components/AboutMe';
-import { Education } from './components/Education';
-import { Skills } from './components/Skills';
-import { Projects } from './components/Projects';
-import { Contact } from './components/Contact';
+import { AboutPage } from './pages/AboutPage';
+import { EducationPage } from './pages/EducationPage';
+import { SkillsPage } from './pages/SkillsPage';
+import { ProjectsPage } from './pages/ProjectsPage';
+import { ContactPage } from './pages/ContactPage';
+import { useTheme } from './hooks/useTheme';
 
-const VALID_VIEWS: ViewKey[] = ['about', 'education', 'skills', 'projects', 'contact'];
-
-const getViewFromHash = (): ViewKey => {
-  if (typeof window === 'undefined') return 'about';
-  const rawHash = window.location.hash.replace(/^#\/?/, '').toLowerCase();
-  return VALID_VIEWS.includes(rawHash as ViewKey) ? (rawHash as ViewKey) : 'about';
-};
-
+/**
+ * App.tsx
+ * Root of the webapp, here we define: 
+ * 1. The option to change theme (using the state for this)
+ * 2. Add the header and footer components
+ * 3. Manage roots to different pages.
+ */
 export function App() {
-  const [nightMode, setNightMode] = useState<boolean>(() => {
-    const saved = localStorage.getItem('portfolio_theme');
-    return saved !== null ? saved === 'dark' : true;
-  });
-
-  const [currentView, setCurrentView] = useState<ViewKey>(getViewFromHash);
-
-  useEffect(() => {
-    localStorage.setItem('portfolio_theme', nightMode ? 'dark' : 'light');
-    if (nightMode) {
-      document.documentElement.classList.remove('light-mode');
-      document.body.classList.remove('light-mode');
-    } else {
-      document.documentElement.classList.add('light-mode');
-      document.body.classList.add('light-mode');
-    }
-  }, [nightMode]);
-
-  // View selection with browser history integration
-  const handleSelectView = useCallback((view: ViewKey, pushHistory = true) => {
-    setCurrentView((prev) => {
-      if (prev === view) return prev;
-      if (pushHistory) {
-        window.history.pushState({ view }, '', `#${view}`);
-      }
-      return view;
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
-
-  // Listen for browser back/forward and trackpad gestures (popstate & hashchange)
-  useEffect(() => {
-    // Ensure initial hash is in sync with history
-    const initialView = getViewFromHash();
-    if (!window.location.hash) {
-      window.history.replaceState({ view: initialView }, '', `#${initialView}`);
-    }
-
-    const handleHistoryChange = () => {
-      const nextView = getViewFromHash();
-      setCurrentView(nextView);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    window.addEventListener('popstate', handleHistoryChange);
-    window.addEventListener('hashchange', handleHistoryChange);
-
-    return () => {
-      window.removeEventListener('popstate', handleHistoryChange);
-      window.removeEventListener('hashchange', handleHistoryChange);
-    };
-  }, []);
+  // Theme state and toggler managed by the custom useTheme hook
+  const { nightMode, toggleTheme } = useTheme();
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-200 ${
-      nightMode ? 'bg-[#0b0f17] text-neutral-100' : 'bg-[#fafafa] text-neutral-900'
-    }`}>
-      {/* Sticky Top Navigation */}
+    <div
+      className={`min-h-screen flex flex-col font-sans transition-colors duration-200 ${
+        nightMode ? 'bg-[#10131a] text-zinc-100' : 'bg-[#f7f9f9] text-zinc-900'
+      }`}
+    >
+      {/* Header: Header bar to move between routes*/}
       <Header
-        currentView={currentView}
-        onSelectView={(view) => handleSelectView(view, true)}
         nightMode={nightMode}
-        onToggleTheme={() => setNightMode(!nightMode)}
+        onToggleTheme={toggleTheme}
       />
 
-      {/* Main View Container */}
+      {/* Main Content Area: shows the page depending on the URL */}
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 pt-6 sm:pt-10">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentView}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-          >
-            {currentView === 'about' && (
-              <AboutMe onNavigate={(view) => handleSelectView(view, true)} nightMode={nightMode} />
-            )}
-            {currentView === 'education' && (
-              <Education nightMode={nightMode} />
-            )}
-            {currentView === 'skills' && (
-              <Skills nightMode={nightMode} />
-            )}
-            {currentView === 'projects' && (
-              <Projects nightMode={nightMode} />
-            )}
-            {currentView === 'contact' && (
-              <Contact nightMode={nightMode} />
-            )}
-          </motion.div>
-        </AnimatePresence>
+        <Routes>
+          {/* Landing / Home route */}
+          <Route path="/" element={<AboutPage nightMode={nightMode} />} />
+
+          {/* Alias /about route redirects cleanly to "/" */}
+          <Route path="/about" element={<Navigate to="/" replace />} />
+
+          {/* Education & Academic Experience */}
+          <Route path="/education" element={<EducationPage nightMode={nightMode} />} />
+
+          {/* Technical Skills Catalog */}
+          <Route path="/skills" element={<SkillsPage nightMode={nightMode} />} />
+
+          {/* Projects Showcase */}
+          <Route path="/projects" element={<ProjectsPage nightMode={nightMode} />} />
+
+          {/* Contact Information & Reach-out Form */}
+          <Route path="/contact" element={<ContactPage nightMode={nightMode} />} />
+
+          {/* Catch-all fallback: redirects any unrecognized URL path back to home */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
 
-      {/* Footer */}
-      <Footer nightMode={nightMode} onSelectView={(view) => handleSelectView(view, true)} />
+      {/* Footer: Bottom navigation, copyright notice, CV download, and social links */}
+      <Footer nightMode={nightMode} />
     </div>
   );
 }

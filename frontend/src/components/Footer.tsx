@@ -1,88 +1,98 @@
+import { Link } from 'react-router-dom';
+import { FileDown } from 'lucide-react';
 import { PROFILE } from '../data/portfolioData';
-import type { ViewKey } from './Header';
 import { GithubIcon, LinkedinIcon } from './Icons';
 
+/**
+ * Props for the Footer component:
+ * - nightMode: boolean indicating if dark mode is active for styling borders and background.
+ */
 interface FooterProps {
   nightMode: boolean;
-  onSelectView: (view: ViewKey) => void;
 }
 
-export const Footer = ({ nightMode, onSelectView }: FooterProps) => {
+/**
+ * Footer Component
+ *
+ * Site-wide footer displayed at the bottom of each view:
+ * 1. Copyright information with dynamic year and student name.
+ * 2. Route links to each primary portfolio page using React Router's <Link>.
+ * 3. Quick CV download link.
+ * 4. External social links (GitHub, LinkedIn) with security attributes.
+ */
+export const Footer = ({ nightMode }: FooterProps) => {
   return (
-    <footer className="border-t transition-colors py-10"
+    <footer
+      className="border-t transition-colors py-10"
       style={{
-        backgroundColor: nightMode ? '#0b0f17' : '#f8fafc',
+        backgroundColor: nightMode ? '#10131a' : '#f7f9f9',
         borderColor: nightMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)'
       }}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+        {/* ------------------------------------------------------------------ */}
+        {/* Copyright Notice */}
+        {/* ------------------------------------------------------------------ */}
         <div>
           <span>© {new Date().getFullYear()} {PROFILE.name || 'Jorge Cummins'}. All rights reserved.</span>
         </div>
 
-        {/* Quick Nav Links in exact order */}
-        <div className="flex items-center gap-4 text-xs">
-          <a
-            href="#about"
-            onClick={(e) => {
-              e.preventDefault();
-              onSelectView('about');
-            }}
-            className="hover:text-neutral-300 cursor-pointer"
+        {/* ------------------------------------------------------------------ */}
+        {/* Quick Page Links */}
+        {/* ------------------------------------------------------------------ */}
+        <div className="flex flex-wrap items-center gap-4 text-xs">
+          <Link
+            to="/"
+            className="hover:text-teal-400 transition-colors cursor-pointer"
           >
             About me
-          </a>
-          <a
-            href="#education"
-            onClick={(e) => {
-              e.preventDefault();
-              onSelectView('education');
-            }}
-            className="hover:text-neutral-300 cursor-pointer"
+          </Link>
+          <Link
+            to="/education"
+            className="hover:text-teal-400 transition-colors cursor-pointer"
           >
             Education
-          </a>
-          <a
-            href="#skills"
-            onClick={(e) => {
-              e.preventDefault();
-              onSelectView('skills');
-            }}
-            className="hover:text-neutral-300 cursor-pointer"
+          </Link>
+          <Link
+            to="/skills"
+            className="hover:text-teal-400 transition-colors cursor-pointer"
           >
             Skills
-          </a>
-          <a
-            href="#projects"
-            onClick={(e) => {
-              e.preventDefault();
-              onSelectView('projects');
-            }}
-            className="hover:text-neutral-300 cursor-pointer"
+          </Link>
+          <Link
+            to="/projects"
+            className="hover:text-teal-400 transition-colors cursor-pointer"
           >
             Projects
-          </a>
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              onSelectView('contact');
-            }}
-            className="hover:text-neutral-300 cursor-pointer"
+          </Link>
+          <Link
+            to="/contact"
+            className="hover:text-teal-400 transition-colors cursor-pointer"
           >
             Contact
+          </Link>
+          <a
+            href="/cv.pdf"
+            download="Jorge_Cummins_CV.pdf"
+            className="hover:text-teal-400 transition-colors cursor-pointer inline-flex items-center gap-1 font-medium text-teal-500/90"
+            title="Download CV (PDF)"
+          >
+            <FileDown className="w-3.5 h-3.5" />
+            <span>CV</span>
           </a>
         </div>
 
-        {/* Social Icons */}
-        <div className="flex items-center gap-3 text-neutral-400">
+        {/* ------------------------------------------------------------------ */}
+        {/* External Social Profiles (GitHub & LinkedIn) */}
+        {/* ------------------------------------------------------------------ */}
+        <div className="flex items-center gap-3 text-zinc-400">
           {PROFILE.github && (
             <a
               href={PROFILE.github}
               target="_blank"
               rel="noreferrer"
-              className="hover:text-neutral-200 transition-colors"
-              aria-label="GitHub"
+              className="hover:text-teal-300 transition-colors"
+              aria-label="GitHub Profile"
             >
               <GithubIcon className="w-4 h-4" />
             </a>
@@ -92,8 +102,8 @@ export const Footer = ({ nightMode, onSelectView }: FooterProps) => {
               href={PROFILE.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="hover:text-neutral-200 transition-colors"
-              aria-label="LinkedIn"
+              className="hover:text-teal-300 transition-colors"
+              aria-label="LinkedIn Profile"
             >
               <LinkedinIcon className="w-4 h-4" />
             </a>

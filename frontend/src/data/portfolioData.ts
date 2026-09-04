@@ -1,151 +1,142 @@
+/**
+ * Project Interface
+ * Represents a single portfolio project item shown in Projects and AboutMe views.
+ */
 export interface Project {
-  id: string;
-  title: string;
-  category: string;
-  description: string;
-  highlights: string[];
-  technologies: string[];
-  githubUrl?: string;
-  liveUrl?: string;
+  id: string;              // Unique identifier (e.g., "smart-home-hub")
+  title: string;           // Display title of the project
+  category: string;        // Categorization tag (e.g., "Embedded & Hardware", "Systems & Software")
+  description: string;     // Short summary describing what the project does
+  highlights: string[];    // Key accomplishments, contributions, or bullet points
+  technologies: string[];  // List of tools/languages/frameworks used (e.g., ["C++", "FreeRTOS", "KiCad"])
+  githubUrl?: string;      // Optional URL to GitHub repository
+  liveUrl?: string;        // Optional URL to a deployed demo or live site
 }
 
+/**
+ * Education Interface
+ * Represents university academic degree details and credentials.
+ */
 export interface Education {
-  degree: string;
-  institution: string;
-  graduationYear: string;
-  gpa?: string;
-  honors?: string[];
-  location: string;
+  degree: string;          // Degree title (e.g., "Bachelor of Science in Computer Engineering")
+  institution: string;     // University or college name
+  graduationYear: string;  // Year or date range (e.g., "Expected May 2026")
+  gpa?: string;            // Optional GPA rating (e.g., "3.85 / 4.00")
+  honors?: string[];       // Optional array of academic awards or dean's list recognitions
+  location: string;        // Campus location (e.g., "Santiago, Chile")
 }
 
+/**
+ * CourseGroup Interface
+ * Groups relevant courses by discipline (e.g., "Hardware & Architecture", "Software & Systems").
+ */
 export interface CourseGroup {
-  category: string;
-  courses: string[];
+  category: string;        // Category heading for the course cluster
+  courses: string[];       // Array of course names
 }
 
+/**
+ * Experience Interface
+ * Represents an internship, research assistantship, or work role.
+ */
 export interface Experience {
-  role: string;
-  organization: string;
-  period: string;
-  location: string;
-  description: string[];
+  role: string;            // Job or role title (e.g., "Firmware Engineering Intern")
+  organization: string;    // Company, institution, or laboratory name
+  period: string;          // Employment time span (e.g., "Summer 2025")
+  location: string;        // City and State/Country
+  description: string[];   // Bullet points describing accomplishments and responsibilities
 }
 
+/**
+ * SkillGroup Interface
+ * Clusters technical skills into organized sections (e.g., "Languages", "Hardware", "Tools").
+ */
 export interface SkillGroup {
-  title: string;
-  skills: string[];
+  title: string;           // Name of the skill category
+  skills: string[];        // List of technical skills or tools in that category
 }
 
+/**
+ * FocusArea Interface
+ * Highlights key sub-disciplines or technical passions in the About view.
+ */
 export interface FocusArea {
-  id: string;
-  title: string;
-  description: string;
+  id: string;              // Unique slug
+  title: string;           // Focus area title (e.g., "Embedded Systems & Firmware")
+  description: string;     // Short paragraph explaining interest and experience
 }
 
-// -------------------------------------------------------------
-// 1. PERSONAL PROFILE & BIO
-// Fill in your personal details below:
-// -------------------------------------------------------------
+
+// 1. PERSONAL PROFILE 
+// Who the fuck am I
 export const PROFILE = {
   name: "Jorge Cummins",
   role: "Computer Engineering Student",
-  institution: "", // e.g. "University of ..."
+  institution: "Universidad de Chile", // e.g. "University of ..."
   graduation: "",  // e.g. "Expected May 2026"
-  location: "",    // e.g. "City, State / Country"
-  email: "",       // e.g. "your.email@domain.com"
-  github: "",      // e.g. "https://github.com/your-username"
-  linkedin: "",    // e.g. "https://linkedin.com/in/your-profile"
-  about: "",       // e.g. "Write a few sentences introducing yourself, your passions, and what you are learning."
+  location: "Santiago, Chile",    // e.g. "City, State / Country"
+  email: "jorge.cummins.hs@gmail.com",       // e.g. "your.email@domain.com"
+  github: "https://github.com/JorgeCSH",      // e.g. "https://github.com/your-username"
+  linkedin: "https://www.linkedin.com/in/jorge-cummins-holger/",    // e.g. "https://linkedin.com/in/your-profile"
+  about: "Professional nigger and nword pass distribuitor",       // e.g. "Write a few sentences introducing yourself, your passions, and what you are learning."
 };
 
-// -------------------------------------------------------------
 // 2. AREAS OF FOCUS
-// Fill in your key engineering interests or disciplines below:
-// -------------------------------------------------------------
+// What I like working on
 export const AREAS_OF_FOCUS: FocusArea[] = [
-  /*
-  Uncomment and add your areas of focus:
   {
-    id: "embedded-systems",
-    title: "Embedded Systems & Firmware",
-    description: "Brief description of your focus in embedded systems, microcontrollers, and firmware."
-  },
-  {
-    id: "digital-design",
-    title: "Computer Architecture & Digital Design",
-    description: "Brief description of your focus in digital logic, HDLs (SystemVerilog/VHDL), or FPGA design."
-  },
-  {
-    id: "systems-software",
-    title: "Systems Software",
-    description: "Brief description of your focus in C/C++, operating systems, and developer tools."
+    id: "Low level programming",
+    title: "I like  `c` but I prefer rust",
+    description: "Computer goes BROOOOM",
   }
-  */
-];
+  ];
 
-// -------------------------------------------------------------
 // 3. PROJECTS
-// Add your personal, academic, or team projects below:
-// -------------------------------------------------------------
+// What I have done in my life
 export const PROJECTS: Project[] = [
-  /*
-  Uncomment and fill with your projects:
   {
     id: "project-1",
-    title: "Project Name",
-    category: "Embedded & Hardware", // or "Systems & Software", "Web & Tools", etc.
-    description: "A short 1-2 sentence summary of what this project is and what it does.",
+    title: "Pagina de adopcion",
+    category: "WebDev", // or "Systems & Software", "Web & Tools", etc.
+    description: "Web app developed fo the course 'Desarrollo de Aplicaciones Web'",
     highlights: [
-      "Key feature, contribution, or technical detail 1",
-      "Key feature, contribution, or technical detail 2"
+      "For nigger, not by a nigger"
     ],
-    technologies: ["C", "C++", "FreeRTOS"],
-    githubUrl: "https://github.com/...",
+    technologies: ["JavaScript", "Java", "Python"],
+    githubUrl: "https://github.com/JorgeCSH/desarrollo_web_jorge_cummins",
     liveUrl: ""
   }
-  */
 ];
 
-// -------------------------------------------------------------
 // 4. EDUCATION & ACADEMICS
-// Fill in your university, degree, and academic honors:
-// -------------------------------------------------------------
+// I am a student
 export const EDUCATION: Education = {
   degree: "Nigger Engineering",
-  institution: "",     // e.g. "University Name"
+  institution: "Universidad de Chile",     // e.g. "University Name"
   graduationYear: "",  // e.g. "Expected May 2026"
   gpa: "",             // e.g. "3.85 / 4.00" (optional)
   honors: [
-    // "Dean's Honor List",
-    // "Academic Scholarship"
+     "Estudiante destacado FCFM 2025"
   ],
-  location: ""         // e.g. "City, State"
+  location: "Santiago, Chile"         // e.g. "City, State"
 };
 
-// -------------------------------------------------------------
 // 5. EXPERIENCE
-// Add any internships, research assistantships, or jobs:
-// -------------------------------------------------------------
+// Unemployment
 export const EXPERIENCES: Experience[] = [
-  /*
-  Uncomment and add your experiences:
   {
-    role: "Undergraduate Research Assistant",
-    organization: "Lab Name / Department",
-    period: "Month Year – Present",
-    location: "City, State",
+    role: "Teaching assistant, Differential and Integral Calculus",
+    organization: "Facultad de Ciencias Fisicas y Matematicas, Universidad de Chile",
+    period: "August 2024 -- December 2026",
+    location: "Santiago, Chile",
     description: [
-      "Key responsibility or achievement in this role.",
-      "Another contribution or technique used."
+      "I was the responsible of failing first year students"
     ]
   }
-  */
 ];
 
-// -------------------------------------------------------------
 // 6. RELEVANT COURSEWORK
 // Add your courses grouped by topic:
-// -------------------------------------------------------------
 export const COURSEWORK: CourseGroup[] = [
   /*
   Uncomment and add your coursework:
@@ -173,19 +164,12 @@ export const COURSEWORK: CourseGroup[] = [
 // Add your skills grouped by category:
 // -------------------------------------------------------------
 export const SKILL_GROUPS: SkillGroup[] = [
-  /*
-  Uncomment and add your skills:
   {
     title: "Programming Languages",
-    skills: ["C", "C++", "Python", "TypeScript", "SystemVerilog"]
-  },
-  {
-    title: "Hardware & Embedded",
-    skills: ["ARM Cortex-M", "STM32", "FPGA", "Vivado", "KiCad"]
+    skills: ["C", "C++", "Python", "TypeScript"]
   },
   {
     title: "Tools & Systems",
-    skills: ["Linux", "Git", "GDB", "Make", "Docker"]
+    skills: ["Linux", "Git"]
   }
-  */
 ];

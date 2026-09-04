@@ -27,7 +27,6 @@ interface HeaderProps {
  * Navigation items for the header bar ("/" is used as the "about" page)
  */
 const NAV_ITEMS: NavItem[] = [
-  { path: '/', label: 'About me', icon: User },
   { path: '/education', label: 'Education', icon: GraduationCap },
   { path: '/skills', label: 'Skills', icon: Wrench },
   { path: '/projects', label: 'Projects', icon: Layers },
@@ -101,7 +100,6 @@ export const Header = ({ nightMode, onToggleTheme }: HeaderProps) => {
                     />
                   )}
                   <span className="relative z-10 flex items-center gap-1.5">
-                    <Icon className="w-3.5 h-3.5 text-teal-500" />
                     {label}
                   </span>
                 </>

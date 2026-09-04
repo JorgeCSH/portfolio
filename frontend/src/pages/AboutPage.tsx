@@ -1,12 +1,6 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  ArrowRight, 
-  FileText, 
-  GraduationCap,
-  CircuitBoard,
-  FileDown
-} from 'lucide-react';
+import { ArrowRight, FileText, GraduationCap, CircuitBoard, FileDown } from 'lucide-react';
 import { PROFILE, PROJECTS, EDUCATION, AREAS_OF_FOCUS } from '../data/portfolioData';
 import { GithubIcon } from '../components/Icons';
 import { useScrollToTop } from '../hooks/useScrollToTop';
@@ -49,16 +43,9 @@ export const AboutPage = ({ nightMode }: AboutPageProps) => {
       transition={{ duration: 0.25, ease: 'easeOut' }}
       className="space-y-16 pb-16"
     >
-      {/* -------------------------------------------------------------------- */}
-      {/* 1. Hero / Introduction Section */}
-      {/* -------------------------------------------------------------------- */}
+      {/* 1. Introduction section */}
       <section className="pt-6 sm:pt-10 space-y-6 max-w-3xl">
         {/* Status badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-teal-500/10 text-teal-400 border border-teal-500/20">
-          <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
-          <span>{PROFILE.role || "Computer Engineering Student"}</span>
-        </div>
-
         <h1 className="text-3xl sm:text-5xl font-semibold tracking-tight leading-[1.15] text-inherit">
           Hi, I&apos;m {displayName}.
         </h1>

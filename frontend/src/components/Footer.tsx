@@ -13,12 +13,6 @@ interface FooterProps {
 
 /**
  * Footer Component
- *
- * Site-wide footer displayed at the bottom of each view:
- * 1. Copyright information with dynamic year and student name.
- * 2. Route links to each primary portfolio page using React Router's <Link>.
- * 3. Quick CV download link.
- * 4. External social links (GitHub, LinkedIn) with security attributes.
  */
 export const Footer = ({ nightMode }: FooterProps) => {
   return (
@@ -30,82 +24,49 @@ export const Footer = ({ nightMode }: FooterProps) => {
       }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
-        {/* ------------------------------------------------------------------ */}
-        {/* Copyright Notice */}
-        {/* ------------------------------------------------------------------ */}
+        {/* Creator */}
         <div>
-          <span>© {new Date().getFullYear()} {PROFILE.name || 'Jorge Cummins'}. All rights reserved.</span>
+          <span>Jorge Cummins 2026</span>
         </div>
 
-        {/* ------------------------------------------------------------------ */}
-        {/* Quick Page Links */}
-        {/* ------------------------------------------------------------------ */}
+        {/*  Quick useful shit stuff */}
         <div className="flex flex-wrap items-center gap-4 text-xs">
           <Link
-            to="/"
-            className="hover:text-teal-400 transition-colors cursor-pointer"
-          >
-            About me
-          </Link>
-          <Link
-            to="/education"
-            className="hover:text-teal-400 transition-colors cursor-pointer"
-          >
-            Education
-          </Link>
-          <Link
-            to="/skills"
-            className="hover:text-teal-400 transition-colors cursor-pointer"
-          >
-            Skills
-          </Link>
-          <Link
-            to="/projects"
-            className="hover:text-teal-400 transition-colors cursor-pointer"
-          >
-            Projects
-          </Link>
-          <Link
             to="/contact"
-            className="hover:text-teal-400 transition-colors cursor-pointer"
+            className="hover:underline transition-colors cursor-pointer "
           >
             Contact
           </Link>
-          <a
+          <a 
             href="/cv.pdf"
             download="Jorge_Cummins_CV.pdf"
-            className="hover:text-teal-400 transition-colors cursor-pointer inline-flex items-center gap-1 font-medium text-teal-500/90"
+            className="hover:underline transition-colors cursor-pointer "
             title="Download CV (PDF)"
           >
-            <FileDown className="w-3.5 h-3.5" />
-            <span>CV</span>
+            <span>My resume</span>
           </a>
         </div>
 
-        {/* ------------------------------------------------------------------ */}
-        {/* External Social Profiles (GitHub & LinkedIn) */}
-        {/* ------------------------------------------------------------------ */}
+        {/* Footer stuff*/}
         <div className="flex items-center gap-3 text-zinc-400">
           {PROFILE.github && (
             <a
               href={PROFILE.github}
-              target="_blank"
               rel="noreferrer"
               className="hover:text-teal-300 transition-colors"
               aria-label="GitHub Profile"
             >
-              <GithubIcon className="w-4 h-4" />
+              <GithubIcon/>
             </a>
           )}
           {PROFILE.linkedin && (
             <a
               href={PROFILE.linkedin}
-              target="_blank"
               rel="noreferrer"
               className="hover:text-teal-300 transition-colors"
               aria-label="LinkedIn Profile"
             >
-              <LinkedinIcon className="w-4 h-4" />
+              <LinkedinIcon/>
             </a>
           )}
         </div>

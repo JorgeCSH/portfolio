@@ -82,14 +82,24 @@ export const PROFILE = {
 };
 
 // 2. AREAS OF FOCUS
-// What I like working on
+// What I like working on (diverse areas across software & computing)
 export const AREAS_OF_FOCUS: FocusArea[] = [
   {
-    id: "Low level programming",
-    title: "I like  `c` but I prefer rust",
-    description: "Computer goes BROOOOM",
+    id: "full-stack-web",
+    title: "Full-Stack Web Development",
+    description: "Building responsive, modern web applications, interactive user interfaces, and robust backend integrations.",
+  },
+  {
+    id: "systems-software",
+    title: "Systems & Software Engineering",
+    description: "Designing performant, scalable software, clean modular architectures, and concurrent systems.",
+  },
+  {
+    id: "algorithms-data",
+    title: "Algorithms & Problem Solving",
+    description: "Analyzing computational challenges, data structures, and optimizing algorithmic efficiency across various problem domains.",
   }
-  ];
+];
 
 // 3. PROJECTS
 // What I have done in my life
@@ -141,19 +151,19 @@ export const COURSEWORK: CourseGroup[] = [
   /*
   Uncomment and add your coursework:
   {
-    category: "Hardware & Architecture",
+    category: "Software & Web Development",
     courses: [
-      "Digital Logic Design",
-      "Computer Organization & Architecture",
-      "Microprocessor Systems"
+      "Web Application Development",
+      "Software Engineering",
+      "Database Systems"
     ]
   },
   {
-    category: "Software & Systems",
+    category: "Systems & Computing",
     courses: [
       "Data Structures & Algorithms",
       "Operating Systems",
-      "Systems Programming"
+      "Computer Systems"
     ]
   }
   */
@@ -166,10 +176,18 @@ export const COURSEWORK: CourseGroup[] = [
 export const SKILL_GROUPS: SkillGroup[] = [
   {
     title: "Programming Languages",
-    skills: ["C", "C++", "Python", "TypeScript"]
+    skills: ["Python", "TypeScript", "JavaScript", "Java", "C", "C++"]
   },
   {
-    title: "Tools & Systems",
-    skills: ["Linux", "Git"]
+    title: "Web & Frameworks",
+    skills: ["React", "Node.js", "Express", "HTML5", "CSS3 / Tailwind", "REST APIs"]
+  },
+  {
+    title: "Developer Tools & Systems",
+    skills: ["Git", "Linux", "Docker", "Vite", "VS Code"]
+  },
+  {
+    title: "Core Fundamentals",
+    skills: ["Data Structures", "Algorithms", "Object-Oriented Design", "Software Architecture"]
   }
 ];

@@ -12,67 +12,30 @@
 
 /**
  * ============================================================================
- * Color Palette: Modern Obsidian Charcoal & Teal / Emerald
+ * Color Palette: Deep Obsidian Charcoal & Modern Electric Indigo
  * ============================================================================
- * Specially crafted to diverge from GitHub's cold blue-gray (#0d1117, #58a6ff)
- * to a warmer, high-tech engineering aesthetic using deep obsidian surfaces,
- * vibrant teal/emerald primary accents, and warm amber highlights.
+ * Clean, high-tech modern software engineering aesthetic.
  */
-
 :root {
-  /* Dark Mode Palette (Default) */
-  --bg-base: #10131a;
-  --bg-surface: #161b24;
-  --bg-card: #19202c;
-  --bg-card-hover: #202938;
+  color-scheme: dark;
+
+  --bg-base: #09090b;
+  --bg-surface: #111115;
+  --bg-elevated: #18181f;
 
   --border-dim: rgba(255, 255, 255, 0.08);
-  --border-subtle: rgba(45, 212, 191, 0.15);
-  --border-strong: rgba(45, 212, 191, 0.35);
+  --border-subtle: rgba(99, 102, 241, 0.15);
+  --border-strong: rgba(99, 102, 241, 0.35);
 
-  --text-main: #f3f5f8;
-  --text-muted: #9ba3af;
-  --text-tertiary: #6b7382;
+  --text-main: #f4f4f5;
+  --text-muted: #a1a1aa;
+  --text-tertiary: #71717a;
 
-  /* Vibrant Teal & Emerald Accents */
-  --accent-primary: #14b8a6;
-  --accent-primary-hover: #2dd4bf;
-  --accent-primary-subtle: rgba(20, 184, 166, 0.12);
-  --accent-primary-border: rgba(45, 212, 191, 0.25);
-
-  /* Secondary Accents */
-  --accent-emerald: #10b981;
-  --accent-amber: #f59e0b;
-  --accent-amber-subtle: rgba(245, 158, 11, 0.12);
-
-  --grid-line: rgba(20, 184, 166, 0.04);
-}
-
-.light-mode {
-  /* Light Mode Palette: Clean Sage/Mineral */
-  --bg-base: #f7f9f9;
-  --bg-surface: #ffffff;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f1f5f4;
-
-  --border-dim: rgba(15, 23, 42, 0.08);
-  --border-subtle: rgba(13, 148, 136, 0.16);
-  --border-strong: rgba(13, 148, 136, 0.30);
-
-  --text-main: #11181c;
-  --text-muted: #4b5563;
-  --text-tertiary: #9ca3af;
-
-  --accent-primary: #0d9488;
-  --accent-primary-hover: #0f766e;
-  --accent-primary-subtle: rgba(13, 148, 136, 0.10);
-  --accent-primary-border: rgba(13, 148, 136, 0.25);
-
-  --accent-emerald: #059669;
-  --accent-amber: #d97706;
-  --accent-amber-subtle: rgba(217, 119, 6, 0.10);
-
-  --grid-line: rgba(13, 148, 136, 0.03);
+  /* Modern Electric Indigo Accents */
+  --accent-primary: #6366f1;
+  --accent-primary-hover: #818cf8;
+  --accent-primary-subtle: rgba(99, 102, 241, 0.12);
+  --accent-primary-border: rgba(99, 102, 241, 0.28);
 }
 
 /* Base resets and smooth scrolling */
@@ -82,23 +45,16 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: #09090b;
 }
 
 body {
   margin: 0;
   min-width: 320px;
-  background-color: var(--bg-base);
+  background-color: #09090b;
   color: var(--text-main);
   font-family: var(--font-sans);
-  transition: background-color 0.25s ease, color 0.25s ease;
-}
-
-/* Subtle Engineering Coordinate Grid */
-.bg-schematic-grid {
-  background-image: 
-    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-  background-size: 32px 32px;
 }
 
 /* Custom modern scrollbars */
@@ -108,14 +64,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-base);
+  background: #09090b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-subtle);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-primary-border);
+  background: rgba(99, 102, 241, 0.4);
 }

@@ -1,28 +1,14 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Award, Calendar, MapPin, FileDown } from 'lucide-react';
 import { EDUCATION, COURSEWORK, EXPERIENCES } from '../data/portfolioData';
 import { useScrollToTop } from '../hooks/useScrollToTop';
 
 /**
- * Props for the EducationPage component:
- * - nightMode: boolean indicating dark mode state for dynamic border and background styling.
- */
-interface EducationPageProps {
-  nightMode: boolean;
-}
-
-/**
  * EducationPage Component
  *
- * Showcases academic background and work experience:
- * 1. Degree & Honors Card: University, degree, graduation year, GPA, and awards.
- * 2. Experience & Roles: Internships, campus roles, and engineering projects with responsibilities.
- * 3. Coursework Catalog: Categorized curriculum relevant to computer engineering.
- * 
- * Note: Uses useScrollToTop hook instead of useLocation for automatic smooth scroll restoration.
+ * Showcases academic credentials, engineering experience, and coursework.
+ * Formatted as a clean editorial timeline and CV section without card hell.
  */
-export const EducationPage = ({ nightMode }: EducationPageProps) => {
-  // Smoothly scroll to the top of the window on mount
+export const EducationPage = () => {
   useScrollToTop();
 
   return (
@@ -31,146 +17,124 @@ export const EducationPage = ({ nightMode }: EducationPageProps) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
-      className="space-y-12 pb-16"
+      className="space-y-16 pb-16"
     >
       {/* -------------------------------------------------------------------- */}
       {/* Page Header */}
       {/* -------------------------------------------------------------------- */}
-      <div
-        className="border-b pb-4 space-y-1.5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-        style={{ borderColor: nightMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
-      >
-        <div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-inherit">
+      <div className="border-b border-zinc-800/80 pb-6 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
+        <div className="space-y-1">
+          <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold">
+            curriculum // academic & professional
+          </span>
+          <h1 className="text-2xl sm:text-4xl font-semibold tracking-tight text-zinc-100">
             Education & Experience
           </h1>
-          <p className="text-sm text-zinc-400 max-w-2xl">
-            Academic background, relevant coursework, and engineering experience.
+          <p className="text-sm text-zinc-400 max-w-2xl pt-1">
+            Academic credentials, relevant coursework, and software engineering experience.
           </p>
         </div>
 
-        {/* CV Download shortcut */}
+        {/* CV Download shortcut link */}
         <a
           href="/cv.pdf"
           download="Jorge_Cummins_CV.pdf"
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-teal-600 hover:bg-teal-500 text-white transition-colors shadow-xs shrink-0 cursor-pointer self-start sm:self-auto"
+          className="text-indigo-400 hover:text-indigo-300 text-sm font-medium transition-colors"
           title="Download complete CV as PDF"
         >
-          <FileDown className="w-3.5 h-3.5" />
-          <span>Download CV</span>
+          get my resume (pdf) ↓
         </a>
       </div>
 
       {/* -------------------------------------------------------------------- */}
-      {/* 1. Academic Degree Card */}
+      {/* 1. Academic Credentials Section */}
       {/* -------------------------------------------------------------------- */}
-      <section
-        className="p-6 rounded-xl border space-y-4 shadow-xs"
-        style={{
-          backgroundColor: nightMode ? '#161b24' : '#ffffff',
-          borderColor: nightMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'
-        }}
-      >
-        {/* Degree title, university, and graduation date */}
-        <div
-          className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b pb-3"
-          style={{ borderColor: nightMode ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }}
-        >
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-teal-500/10 text-teal-400 border border-teal-500/20">
-              <GraduationCap className="w-4 h-4" />
-            </div>
-            <div>
-              <h2 className="font-semibold text-base text-inherit">
-                {EDUCATION.degree || "Bachelor of Science in Computer Engineering"}
-              </h2>
-              <p className="text-xs text-zinc-400">
-                {EDUCATION.institution || "Your University"}
-              </p>
-            </div>
-          </div>
-          {EDUCATION.graduationYear && (
-            <span className="text-xs font-medium text-zinc-400 flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-teal-500" />
-              {EDUCATION.graduationYear}
-            </span>
-          )}
+      <section className="space-y-6">
+        <div className="border-b border-zinc-800/80 pb-2">
+          <h2 className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
+            // academic degree
+          </h2>
         </div>
 
-        {/* Academic metrics: GPA and Honors */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-          {EDUCATION.gpa && (
+        <div className="space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <div>
-              <span className="text-zinc-500 block uppercase text-[10px]">Academic Standing</span>
-              <span className="font-semibold text-zinc-200">GPA: {EDUCATION.gpa}</span>
+              <h3 className="text-xl font-semibold text-zinc-100">
+                {EDUCATION.degree || "Bachelor of Science in Computer Engineering"}
+              </h3>
+              <p className="text-sm text-zinc-400 font-medium">
+                {EDUCATION.institution || "Universidad de Chile"}
+              </p>
             </div>
-          )}
+            {EDUCATION.graduationYear && (
+              <span className="text-xs font-mono text-zinc-500 font-medium">
+                {EDUCATION.graduationYear}
+              </span>
+            )}
+          </div>
 
-          {EDUCATION.honors && EDUCATION.honors.length > 0 && (
-            <div>
-              <span className="text-zinc-500 block uppercase text-[10px]">Honors & Recognition</span>
-              <div className="space-y-1 mt-0.5">
-                {EDUCATION.honors.map((honor) => (
-                  <span key={honor} className="text-zinc-300 flex items-center gap-1.5">
-                    <Award className="w-3 h-3 text-amber-400" />
-                    {honor}
-                  </span>
-                ))}
-              </div>
+          {/* Academic metrics: GPA and Honors */}
+          {(EDUCATION.gpa || (EDUCATION.honors && EDUCATION.honors.length > 0)) && (
+            <div className="flex flex-wrap gap-8 pt-2 text-xs">
+              {EDUCATION.gpa && (
+                <div className="space-y-0.5">
+                  <span className="text-zinc-500 font-mono text-[11px] block">academic standing</span>
+                  <span className="font-semibold text-zinc-200">GPA: {EDUCATION.gpa}</span>
+                </div>
+              )}
+
+              {EDUCATION.honors && EDUCATION.honors.length > 0 && (
+                <div className="space-y-1">
+                  <span className="text-zinc-500 font-mono text-[11px] block">honors & recognition</span>
+                  <div className="space-y-1">
+                    {EDUCATION.honors.map((honor) => (
+                      <span key={honor} className="text-zinc-300 flex items-center gap-1.5">
+                        <span className="text-indigo-400 font-semibold">•</span>
+                        {honor}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
       </section>
 
       {/* -------------------------------------------------------------------- */}
-      {/* 2. Professional & Campus Experience Section */}
+      {/* 2. Professional & Campus Experience Timeline */}
       {/* -------------------------------------------------------------------- */}
-      <section className="space-y-4">
-        <div
-          className="border-b pb-2 flex items-center justify-between"
-          style={{ borderColor: nightMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
-        >
-          <h2 className="text-xs font-mono uppercase tracking-wider text-teal-400 font-semibold">
-            Experience & Roles
+      <section className="space-y-6">
+        <div className="border-b border-zinc-800/80 pb-2">
+          <h2 className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
+            // experience & roles
           </h2>
         </div>
 
         {EXPERIENCES.length > 0 ? (
-          <div className="space-y-4">
+          <div className="divide-y divide-zinc-800/80">
             {EXPERIENCES.map((exp) => (
-              <div
-                key={exp.role}
-                className="p-6 rounded-xl border space-y-3 shadow-xs"
-                style={{
-                  backgroundColor: nightMode ? '#161b24' : '#ffffff',
-                  borderColor: nightMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'
-                }}
-              >
-                {/* Role title, company/lab name, period, and location */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+              <div key={exp.role} className="py-6 first:pt-1 last:pb-1 space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
                   <div>
-                    <h3 className="font-semibold text-base text-inherit">{exp.role}</h3>
-                    <p className="text-xs text-teal-400 font-medium">{exp.organization}</p>
+                    <h3 className="text-lg font-semibold text-zinc-100">{exp.role}</h3>
+                    <p className="text-xs font-mono text-indigo-400 font-medium">{exp.organization}</p>
                   </div>
-                  <div className="text-xs text-zinc-400 flex items-center gap-3">
+                  <div className="text-xs font-mono text-zinc-500 flex items-center gap-3">
                     <span>{exp.period}</span>
                     {exp.location && (
                       <>
                         <span>•</span>
-                        <span className="flex items-center gap-1">
-                          <MapPin className="w-3 h-3 text-teal-500" />
-                          {exp.location}
-                        </span>
+                        <span>{exp.location}</span>
                       </>
                     )}
                   </div>
                 </div>
 
-                {/* Bullet points of achievements and contributions */}
-                <ul className="space-y-1.5 pt-1">
+                <ul className="space-y-1.5 pt-1 text-xs sm:text-sm text-zinc-300">
                   {exp.description.map((item, idx) => (
-                    <li key={idx} className="text-xs text-zinc-300 flex items-start gap-2 leading-relaxed">
-                      <span className="text-teal-500 mt-1">•</span>
+                    <li key={idx} className="flex items-start gap-2 leading-relaxed">
+                      <span className="text-indigo-400 mt-1">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -179,54 +143,31 @@ export const EducationPage = ({ nightMode }: EducationPageProps) => {
             ))}
           </div>
         ) : (
-          <div 
-            className="p-6 rounded-xl border text-center space-y-2"
-            style={{
-              backgroundColor: nightMode ? 'rgba(22, 27, 36, 0.5)' : 'rgba(243, 244, 246, 0.5)',
-              borderColor: nightMode ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)'
-            }}
-          >
-            <p className="text-xs text-zinc-400">
-              No experiences added yet. Add your internships, research, or work experience in <code>EXPERIENCES</code> in <code>src/data/portfolioData.ts</code>.
-            </p>
-          </div>
+          <p className="text-xs text-zinc-500 italic">No experience added yet.</p>
         )}
       </section>
 
       {/* -------------------------------------------------------------------- */}
       {/* 3. Relevant Coursework Section */}
       {/* -------------------------------------------------------------------- */}
-      <section className="space-y-4">
-        <div
-          className="border-b pb-2 flex items-center justify-between"
-          style={{ borderColor: nightMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
-        >
-          <h2 className="text-xs font-mono uppercase tracking-wider text-teal-400 font-semibold">
-            Relevant Coursework
+      <section className="space-y-6">
+        <div className="border-b border-zinc-800/80 pb-2">
+          <h2 className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
+            // relevant coursework
           </h2>
         </div>
 
         {COURSEWORK.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {COURSEWORK.map((group) => (
-              <div
-                key={group.category}
-                className="p-5 rounded-xl border space-y-3 shadow-xs"
-                style={{
-                  backgroundColor: nightMode ? '#161b24' : '#ffffff',
-                  borderColor: nightMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'
-                }}
-              >
-                <h3
-                  className="font-semibold text-sm text-zinc-200 border-b pb-2"
-                  style={{ borderColor: nightMode ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }}
-                >
+              <div key={group.category} className="space-y-3">
+                <h3 className="font-semibold text-sm text-zinc-200 border-b border-zinc-800/60 pb-1.5 font-mono">
                   {group.category}
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-1.5">
                   {group.courses.map((course) => (
                     <li key={course} className="text-xs text-zinc-300 flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-400/80 shrink-0" />
+                      <span className="w-1 h-1 rounded-full bg-indigo-400/80 shrink-0" />
                       <span>{course}</span>
                     </li>
                   ))}
@@ -235,19 +176,12 @@ export const EducationPage = ({ nightMode }: EducationPageProps) => {
             ))}
           </div>
         ) : (
-          <div 
-            className="p-6 rounded-xl border text-center space-y-2"
-            style={{
-              backgroundColor: nightMode ? 'rgba(22, 27, 36, 0.5)' : 'rgba(243, 244, 246, 0.5)',
-              borderColor: nightMode ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)'
-            }}
-          >
-            <p className="text-xs text-zinc-400">
-              No coursework added yet. Add your courses under <code>COURSEWORK</code> in <code>src/data/portfolioData.ts</code>.
-            </p>
-          </div>
+          <p className="text-xs text-zinc-500 italic">
+            Coursework can be specified under COURSEWORK in src/data/portfolioData.ts.
+          </p>
         )}
       </section>
     </motion.div>
   );
 };
+

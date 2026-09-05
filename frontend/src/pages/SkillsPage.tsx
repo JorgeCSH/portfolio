@@ -5,31 +5,16 @@ import { SKILL_GROUPS } from '../data/portfolioData';
 import { useScrollToTop } from '../hooks/useScrollToTop';
 
 /**
- * Props for the SkillsPage component:
- * - nightMode: boolean indicating dark mode state for styling container and badge colors.
- */
-interface SkillsPageProps {
-  nightMode: boolean;
-}
-
-/**
  * SkillsPage Component
  *
- * Displays categorized technical skill sets (programming languages, hardware, tools):
- * 1. Search Bar: Live interactive filtering allowing the user to search by skill name or category.
- * 2. Grouped Cards: Skill groups rendered in cards with individual styled pills for each skill.
- * 3. Empty States: Handles both empty initial data and zero matching search results gracefully.
- * 
- * Note: Uses useScrollToTop hook instead of useLocation for automatic smooth scroll restoration.
+ * Displays categorized technical skills with live search filtering.
+ * Clean, minimal catalog without card hell.
  */
-export const SkillsPage = ({ nightMode }: SkillsPageProps) => {
-  // Smoothly scroll to the top of the window on mount
+export const SkillsPage = () => {
   useScrollToTop();
 
-  // Local state holding the current text query from the search input
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Filter skills and groups dynamically based on the search query (case-insensitive)
   const filteredGroups = SKILL_GROUPS.map((group) => {
     const matched = group.skills.filter(
       (skill) =>
@@ -48,77 +33,55 @@ export const SkillsPage = ({ nightMode }: SkillsPageProps) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
-      className="space-y-8 pb-16"
+      className="space-y-12 pb-16"
     >
       {/* -------------------------------------------------------------------- */}
       {/* Page Header */}
       {/* -------------------------------------------------------------------- */}
-      <div
-        className="border-b pb-4 space-y-1.5"
-        style={{ borderColor: nightMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
-      >
-        <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-inherit">
-          Technical Skills
-        </h1>
-        <p className="text-sm text-zinc-400 max-w-2xl">
-          What I think I know
-        </p>
+      <div className="border-b border-zinc-800/80 pb-6 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
+        <div className="space-y-1">
+          <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold">
+            catalog // technologies & tools
+          </span>
+          <h1 className="text-2xl sm:text-4xl font-semibold tracking-tight text-zinc-100">
+            Technical Skills
+          </h1>
+          <p className="text-sm text-zinc-400 max-w-2xl pt-1">
+            What I think I know
+          </p>
+        </div>
+
+        {/* Live Search Input (Minimalist) */}
+        {SKILL_GROUPS.length > 0 && (
+          <div className="relative w-full sm:w-64">
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Filter skills..."
+              className="w-full pl-9 pr-3 py-1.5 rounded-md border border-zinc-800 bg-zinc-900/50 text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-indigo-400 transition-colors font-mono"
+            />
+          </div>
+        )}
       </div>
 
       {/* -------------------------------------------------------------------- */}
-      {/* Live Search Filter Input */}
-      {/* -------------------------------------------------------------------- */}
-      {SKILL_GROUPS.length > 0 && (
-        <div className="relative w-full sm:w-72">
-          <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Filter skills or tools..."
-            className="w-full pl-9 pr-3 py-1.5 rounded-lg border text-xs focus:outline-none focus:border-teal-500 transition-colors"
-            style={{
-              backgroundColor: nightMode ? '#161b24' : '#ffffff',
-              borderColor: nightMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-              color: 'inherit'
-            }}
-          />
-        </div>
-      )}
-
-      {/* -------------------------------------------------------------------- */}
-      {/* Skills Groups Grid */}
+      {/* Skills Groups: Open Categorized Layout */}
       {/* -------------------------------------------------------------------- */}
       {filteredGroups.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {filteredGroups.map((group) => (
-            <div
-              key={group.title}
-              className="p-6 rounded-xl border space-y-4 shadow-xs"
-              style={{
-                backgroundColor: nightMode ? '#161b24' : '#ffffff',
-                borderColor: nightMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'
-              }}
-            >
-              {/* Group category title */}
-              <h2
-                className="font-semibold text-base text-inherit border-b pb-2"
-                style={{ borderColor: nightMode ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }}
-              >
-                {group.title}
+            <div key={group.title} className="space-y-4">
+              <h2 className="font-mono text-xs uppercase tracking-wider text-indigo-400 font-semibold border-b border-zinc-800/80 pb-2">
+                // {group.title}
               </h2>
 
-              {/* Badges for each skill in this group */}
               <div className="flex flex-wrap gap-2">
                 {group.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1.5 rounded-lg text-xs font-medium border transition-all"
-                    style={{
-                      backgroundColor: nightMode ? 'rgba(20, 184, 166, 0.08)' : 'rgba(240, 253, 250, 0.9)',
-                      borderColor: nightMode ? 'rgba(45, 212, 191, 0.2)' : 'rgba(13, 148, 136, 0.25)',
-                      color: nightMode ? '#e2e8f0' : '#115e59'
-                    }}
+                    className="px-3 py-1.5 rounded-md text-xs font-mono bg-zinc-900/70 text-zinc-300 border border-zinc-800/80 hover:border-indigo-500/40 hover:text-indigo-300 transition-colors"
                   >
                     {skill}
                   </span>
@@ -128,21 +91,13 @@ export const SkillsPage = ({ nightMode }: SkillsPageProps) => {
           ))}
         </div>
       ) : (
-        /* Empty / No Results Message */
-        <div 
-          className="p-8 rounded-xl border text-center space-y-2"
-          style={{
-            backgroundColor: nightMode ? 'rgba(22, 27, 36, 0.5)' : 'rgba(243, 244, 246, 0.5)',
-            borderColor: nightMode ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)'
-          }}
-        >
-          <p className="text-xs text-zinc-400">
-            {SKILL_GROUPS.length === 0
-              ? 'No technical skills added yet. Define your skill groups in SKILL_GROUPS in src/data/portfolioData.ts.'
-              : 'No skills matched your search filter.'}
-          </p>
+        <div className="text-center py-12 text-zinc-500 text-xs font-mono">
+          {SKILL_GROUPS.length === 0
+            ? 'No technical skills added yet in SKILL_GROUPS.'
+            : 'No skills matched your search filter.'}
         </div>
       )}
     </motion.div>
   );
 };
+

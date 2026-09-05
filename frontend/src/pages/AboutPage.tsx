@@ -1,39 +1,20 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, FileText, GraduationCap, CircuitBoard, FileDown } from 'lucide-react';
 import { PROFILE, PROJECTS, EDUCATION, AREAS_OF_FOCUS } from '../data/portfolioData';
-import { GithubIcon } from '../components/Icons';
 import { useScrollToTop } from '../hooks/useScrollToTop';
-
-/**
- * Props for AboutPage component:
- * - nightMode: boolean indicating dark mode state for dynamic border and background styles.
- */
-interface AboutPageProps {
-  nightMode: boolean;
-}
 
 /**
  * AboutPage Component
  *
- * The landing / overview page of the portfolio:
- * 1. Hero Introduction: Personal welcome, student bio, quick navigation, and direct CV download button.
- * 2. Areas of Focus: Interactive cards highlighting computer engineering and hardware interests.
- * 3. Featured Projects: Previews top projects with direct navigation to the full catalog.
- * 4. Education Snapshot: Summary card with university credentials.
- * 
- * Note: Uses useScrollToTop hook instead of useLocation for automatic smooth scroll restoration.
+ * Clean editorial overview of Jorge's profile and software engineering focus.
+ * Designed with high typographic clarity, modern electric indigo accents, and zero "card hell".
  */
-export const AboutPage = ({ nightMode }: AboutPageProps) => {
-  // Automatically scroll to the top of the window when this page mounts
+export const AboutPage = () => {
   useScrollToTop();
 
-  // React Router hook for programmatic navigation on button click
-  const navigate = useNavigate();
-
-  // Extract up to 2 featured projects for the preview section
   const featuredProjects = PROJECTS.slice(0, 2);
   const displayName = PROFILE.name || "Jorge Cummins";
+
 
   return (
     <motion.div 
@@ -43,213 +24,162 @@ export const AboutPage = ({ nightMode }: AboutPageProps) => {
       transition={{ duration: 0.25, ease: 'easeOut' }}
       className="space-y-16 pb-16"
     >
-      {/* 1. Introduction section */}
-      <section className="pt-6 sm:pt-10 space-y-6 max-w-3xl">
-        {/* Status badge */}
-        <h1 className="text-3xl sm:text-5xl font-semibold tracking-tight leading-[1.15] text-inherit">
-          Hi, I&apos;m {displayName}.
-        </h1>
+      {/* 1. Introduction Hero Section */}
+      <section className="pt-4 sm:pt-8 space-y-6 max-w-3xl">
+        <div className="space-y-2">
+          <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold">
+            portfolio // {PROFILE.role || "Software & Computer Engineering Student"}
+          </span>
+          <h1 className="text-3xl sm:text-5xl font-semibold tracking-tight leading-[1.15] text-zinc-100">
+            Hi, I&apos;m {displayName}.
+          </h1>
+        </div>
 
-        {/* Profile bio summary or friendly fallback */}
+        {/* Profile bio summary */}
         <p className="text-base sm:text-lg leading-relaxed text-zinc-400">
           {PROFILE.about ? (
             PROFILE.about
           ) : (
             <span className="italic text-zinc-500">
-              Welcome to my portfolio. Still a work in progress, let the chef cook
+              Welcome to my portfolio. Still a work in progress, let the chef cook.
             </span>
           )}
         </p>
 
-        {/* Action Buttons: Quick page navigation + direct CV PDF download */}
-        <div className="flex flex-wrap items-center gap-3 pt-2">
-          {/* Direct CV Download Button */}
+        {/* Action Links: Lightweight navigation links without bulky button boxes */}
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 text-sm font-medium">
+          <Link
+            to="/education"
+            className="text-zinc-400 hover:text-indigo-400 transition-colors"
+          >
+            education →
+          </Link>
+
+          <Link
+            to="/skills"
+            className="text-zinc-400 hover:text-indigo-400 transition-colors"
+          >
+            skills →
+          </Link>
+
+          <Link
+            to="/projects"
+            className="text-zinc-400 hover:text-indigo-400 transition-colors"
+          >
+            projects →
+          </Link>
+
+          <Link
+            to="/contact"
+            className="text-zinc-400 hover:text-indigo-400 transition-colors"
+          >
+            contact →
+          </Link>
+
           <a
             href="/cv.pdf"
             download="Jorge_Cummins_CV.pdf"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-teal-600 hover:bg-teal-500 text-white transition-all shadow-sm cursor-pointer"
-            title="Download CV as PDF"
+            className="text-indigo-400 hover:text-indigo-300 transition-colors"
+            title="Download resume (PDF)"
           >
-            <FileDown className="w-3.5 h-3.5" />
-            <span>Download CV</span>
+            get resume (pdf) ↓
           </a>
-
-          {/* Navigate to Education */}
-          <button
-            onClick={() => navigate('/education')}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
-              nightMode 
-                ? 'border-zinc-800 bg-zinc-900/60 text-zinc-200 hover:bg-zinc-800 hover:border-teal-500/40' 
-                : 'border-zinc-300 bg-white text-zinc-800 hover:bg-zinc-100 hover:border-teal-600'
-            }`}
-          >
-            <FileText className="w-3.5 h-3.5 text-teal-500" />
-            <span>Education</span>
-            <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
-          </button>
-
-          {/* Navigate to Skills */}
-          <button
-            onClick={() => navigate('/skills')}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
-              nightMode 
-                ? 'border-zinc-800 bg-zinc-900/60 text-zinc-300 hover:bg-zinc-800 hover:text-white' 
-                : 'border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-100'
-            }`}
-          >
-            <span>Skills</span>
-          </button>
-
-          {/* Navigate to Projects */}
-          <button
-            onClick={() => navigate('/projects')}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
-              nightMode 
-                ? 'border-zinc-800 bg-zinc-900/60 text-zinc-300 hover:bg-zinc-800 hover:text-white' 
-                : 'border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-100'
-            }`}
-          >
-            <span>Projects</span>
-          </button>
-
-          {/* Navigate to Contact */}
-          <button
-            onClick={() => navigate('/contact')}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
-              nightMode 
-                ? 'border-zinc-800 bg-zinc-900/60 text-zinc-300 hover:bg-zinc-800 hover:text-white' 
-                : 'border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-100'
-            }`}
-          >
-            <span>Contact</span>
-          </button>
         </div>
       </section>
 
-      {/* -------------------------------------------------------------------- */}
-      {/* 2. Areas of Focus Section */}
-      {/* -------------------------------------------------------------------- */}
-      <section className="space-y-4">
-        <div
-          className="border-b pb-2 flex items-center justify-between"
-          style={{ borderColor: nightMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
-        >
-          <h2 className="text-xs font-mono uppercase tracking-wider text-teal-400 font-semibold">
-            Areas of Focus
+      {/* 2. Areas of Focus Section (Open Editorial Layout) */}
+      <section className="space-y-6">
+        <div className="border-b border-zinc-800/80 pb-2 flex items-center justify-between">
+          <h2 className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
+            // areas of focus
           </h2>
-          <span className="text-xs text-zinc-500">About my work</span>
+          <span className="text-xs text-zinc-500 font-mono">software & computing domains</span>
         </div>
 
         {AREAS_OF_FOCUS.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {AREAS_OF_FOCUS.map((area) => (
-              <div 
-                key={area.id}
-                className="p-5 rounded-xl border space-y-2.5 transition-all hover:border-teal-500/30"
-                style={{
-                  backgroundColor: nightMode ? '#161b24' : '#ffffff',
-                  borderColor: nightMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'
-                }}
-              >
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-teal-500/10 text-teal-400 mb-3 border border-teal-500/20">
-                  <CircuitBoard className="w-4 h-4" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {AREAS_OF_FOCUS.map((area, idx) => (
+              <div key={area.id} className="space-y-2.5 group">
+                <div className="text-xs font-mono text-indigo-400 font-semibold tracking-wider">
+                  // 0{idx + 1}
                 </div>
-                <h3 className="font-semibold text-sm text-zinc-100">{area.title}</h3>
-                <p className="text-xs text-zinc-400 leading-relaxed">{area.description}</p>
+                <h3 className="font-semibold text-base text-zinc-100 group-hover:text-indigo-400 transition-colors">
+                  {area.title}
+                </h3>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  {area.description}
+                </p>
               </div>
             ))}
           </div>
         ) : (
-          <div 
-            className="p-6 rounded-xl border text-center space-y-2"
-            style={{
-              backgroundColor: nightMode ? 'rgba(22, 27, 36, 0.5)' : 'rgba(243, 244, 246, 0.5)',
-              borderColor: nightMode ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)'
-            }}
-          >
-            <p className="text-xs text-zinc-400">
-               Here are my areas of interest.
-            </p>
-          </div>
+          <p className="text-xs text-zinc-500 italic">
+            Add focus areas in src/data/portfolioData.ts.
+          </p>
         )}
       </section>
 
-      {/* -------------------------------------------------------------------- */}
-      {/* 3. Featured Projects Preview */}
-      {/* -------------------------------------------------------------------- */}
-      <section className="space-y-4">
-        <div
-          className="border-b pb-2 flex items-center justify-between"
-          style={{ borderColor: nightMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
-        >
-          <h2 className="text-xs font-mono uppercase tracking-wider text-teal-400 font-semibold">
-            Featured Projects
+      {/* 3. Featured Projects (Divider-based Editorial List) */}
+      <section className="space-y-6">
+        <div className="border-b border-zinc-800/80 pb-2 flex items-center justify-between">
+          <h2 className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
+            // featured projects
           </h2>
           <Link
             to="/projects"
-            className="text-xs text-teal-400 hover:text-teal-300 transition-colors flex items-center gap-1 cursor-pointer"
+            className="text-xs font-mono text-zinc-400 hover:text-indigo-400 transition-colors cursor-pointer"
           >
-            <span>All Projects ({PROJECTS.length})</span>
-            <ArrowRight className="w-3 h-3" />
+            view all ({PROJECTS.length}) →
           </Link>
         </div>
 
         {featuredProjects.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="divide-y divide-zinc-800/80">
             {featuredProjects.map((project) => (
-              <div
-                key={project.id}
-                className="p-6 rounded-xl border flex flex-col justify-between space-y-4 transition-all hover:border-teal-500/30 shadow-xs"
-                style={{
-                  backgroundColor: nightMode ? '#161b24' : '#ffffff',
-                  borderColor: nightMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'
-                }}
-              >
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-teal-400 font-medium">{project.category}</span>
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-zinc-400 hover:text-teal-300 transition-colors"
-                        aria-label="GitHub Repository"
-                      >
-                        <GithubIcon className="w-4 h-4" />
-                      </a>
-                    )}
+              <div key={project.id} className="py-6 first:pt-1 last:pb-1 space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <span className="text-xs font-mono text-indigo-400 font-medium">
+                      {project.category}
+                    </span>
+                    <span className="text-zinc-600">/</span>
+                    <h3 className="font-semibold text-lg text-zinc-100 hover:text-indigo-400 transition-colors">
+                      {project.title}
+                    </h3>
                   </div>
-
-                  <h3 className="font-semibold text-base text-inherit">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-xs text-zinc-400 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  {project.highlights && project.highlights.length > 0 && (
-                    <ul className="space-y-1.5 pt-1">
-                      {project.highlights.map((item, idx) => (
-                        <li key={idx} className="text-xs text-zinc-300 flex items-start gap-2">
-                          <span className="text-teal-500 mt-0.5">•</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-xs font-mono text-zinc-400 hover:text-indigo-400 transition-colors"
+                      aria-label="GitHub Repository"
+                    >
+                      github →
+                    </a>
                   )}
                 </div>
 
-                {/* Technology pill tags */}
-                <div
-                  className="pt-3 border-t flex flex-wrap gap-1.5"
-                  style={{ borderColor: nightMode ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }}
-                >
+                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-3xl">
+                  {project.description}
+                </p>
+
+                {project.highlights && project.highlights.length > 0 && (
+                  <ul className="space-y-1 text-xs text-zinc-300">
+                    {project.highlights.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="text-indigo-400 mt-0.5">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <div className="flex flex-wrap gap-2 pt-1 text-xs">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-teal-950/40 text-teal-200 border border-teal-800/40"
+                      className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-zinc-900/80 text-zinc-300 border border-zinc-800/80 hover:border-indigo-500/40 hover:text-indigo-300 transition-colors"
                     >
                       {tech}
                     </span>
@@ -259,50 +189,31 @@ export const AboutPage = ({ nightMode }: AboutPageProps) => {
             ))}
           </div>
         ) : (
-          <div 
-            className="p-6 rounded-xl border text-center space-y-2"
-            style={{
-              backgroundColor: nightMode ? 'rgba(22, 27, 36, 0.5)' : 'rgba(243, 244, 246, 0.5)',
-              borderColor: nightMode ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)'
-            }}
-          >
-            <p className="text-xs text-zinc-400">
-              Here are my projects.
-            </p>
-          </div>
+          <p className="text-xs text-zinc-500 italic">No projects listed yet.</p>
         )}
       </section>
 
-      {/* -------------------------------------------------------------------- */}
-      {/* 4. Education Summary Card */}
-      {/* -------------------------------------------------------------------- */}
+      {/* 4. Education Snapshot */}
       {EDUCATION.degree && (
-        <section
-          className="p-5 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-          style={{
-            backgroundColor: nightMode ? 'rgba(22, 27, 36, 0.7)' : 'rgba(243, 244, 246, 0.7)',
-            borderColor: nightMode ? 'rgba(45, 212, 191, 0.15)' : 'rgba(13, 148, 136, 0.15)'
-          }}
-        >
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <GraduationCap className="w-4 h-4 text-teal-400" />
-              <h3 className="font-semibold text-sm text-zinc-100">{EDUCATION.degree}</h3>
+        <section className="pt-6 border-t border-zinc-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div className="space-y-0.5">
+            <span className="text-zinc-500 font-mono uppercase text-[10px] block">academic background</span>
+            <div className="text-zinc-200">
+              <span className="font-semibold">{EDUCATION.degree}</span>
+              <span className="text-zinc-400"> — {EDUCATION.institution || 'Universidad de Chile'}</span>
+              {EDUCATION.graduationYear && <span className="text-zinc-500 font-mono"> ({EDUCATION.graduationYear})</span>}
             </div>
-            <p className="text-xs text-zinc-400">
-              {EDUCATION.institution || 'Universidad de Shile'} {EDUCATION.graduationYear ? `• ${EDUCATION.graduationYear}` : ''} {EDUCATION.gpa ? `• GPA: ${EDUCATION.gpa}` : ''}
-            </p>
           </div>
 
           <Link
             to="/education"
-            className="text-xs text-teal-400 hover:underline flex items-center gap-1 cursor-pointer shrink-0"
+            className="text-xs text-indigo-400 hover:underline cursor-pointer shrink-0 font-medium"
           >
-            <span>View Education</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            view education →
           </Link>
         </section>
       )}
     </motion.div>
   );
 };
+

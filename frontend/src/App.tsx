@@ -6,61 +6,49 @@ import { EducationPage } from './pages/EducationPage';
 import { SkillsPage } from './pages/SkillsPage';
 import { ProjectsPage } from './pages/ProjectsPage';
 import { ContactPage } from './pages/ContactPage';
-import { useTheme } from './hooks/useTheme';
 
 /**
  * App.tsx
- * Root of the webapp, here we define: 
- * 1. The option to change theme (using the state for this)
- * 2. Add the header and footer components
- * 3. Manage roots to different pages.
+ * Root component of the portfolio application.
+ * Dark mode only with clean typography, warm accents, and zero card hell.
  */
 export function App() {
-  // Theme state and toggler managed by the custom useTheme hook
-  const { nightMode, toggleTheme } = useTheme();
-
   return (
-    <div
-      className={`min-h-screen flex flex-col font-sans transition-colors duration-200 ${
-        nightMode ? 'bg-[#10131a] text-zinc-100' : 'bg-[#f7f9f9] text-zinc-900'
-      }`}
-    >
-      {/* Header: Header bar to move between routes*/}
-      <Header
-        nightMode={nightMode}
-        onToggleTheme={toggleTheme}
-      />
+    <div className="min-h-screen flex flex-col font-sans bg-[#09090b] text-zinc-100">
+      {/* Header: Three-section navigation bar */}
+      <Header />
 
-      {/* Main Content Area: shows the page depending on the URL */}
+      {/* Main Content Area */}
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 pt-6 sm:pt-10">
         <Routes>
-          {/* Landing / Home route */}
-          <Route path="/" element={<AboutPage nightMode={nightMode} />} />
+          {/* Landing / About route */}
+          <Route path="/" element={<AboutPage />} />
 
           {/* Alias /about route redirects cleanly to "/" */}
           <Route path="/about" element={<Navigate to="/" replace />} />
 
           {/* Education & Academic Experience */}
-          <Route path="/education" element={<EducationPage nightMode={nightMode} />} />
+          <Route path="/education" element={<EducationPage />} />
 
           {/* Technical Skills Catalog */}
-          <Route path="/skills" element={<SkillsPage nightMode={nightMode} />} />
+          <Route path="/skills" element={<SkillsPage />} />
 
           {/* Projects Showcase */}
-          <Route path="/projects" element={<ProjectsPage nightMode={nightMode} />} />
+          <Route path="/projects" element={<ProjectsPage />} />
 
           {/* Contact Information & Reach-out Form */}
-          <Route path="/contact" element={<ContactPage nightMode={nightMode} />} />
+          <Route path="/contact" element={<ContactPage />} />
 
-          {/* Catch-all fallback: redirects any unrecognized URL path back to home */}
+          {/* Fallback */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
 
-      {/* Footer: Bottom navigation, copyright notice, CV download, and social links */}
-      <Footer nightMode={nightMode} />
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
 
 export default App;
+

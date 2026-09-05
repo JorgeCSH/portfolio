@@ -1,16 +1,23 @@
 import React from 'react';
 
+const navItems = [
+  { label: 'About', href: '#about'},
+  { label: 'Projects', href: '#projects'},
+  { label: 'Contact', href: '#contact'},
+]
+
 const Header: React.FC = () => {
   return (
-    <header className="bg-[#242424] text-white py-4 w-full fixed top-0 left-0 z-[1000] shadow-md">
-      <div className="max-w-[1280px] mx-auto flex justify-between items-center px-8">
-        <h1 className="m-0 text-2xl font-bold">My Portfolio</h1>
-        <nav>
-          <ul className="list-none flex gap-8 m-0 p-0">
-            <li><a href="#home" className="text-white no-underline font-medium transition-colors duration-300 hover:text-[#646cff]">Home</a></li>
-            <li><a href="#about" className="text-white no-underline font-medium transition-colors duration-300 hover:text-[#646cff]">About</a></li>
-            <li><a href="#projects" className="text-white no-underline font-medium transition-colors duration-300 hover:text-[#646cff]">Projects</a></li>
-            <li><a href="#contact" className="text-white no-underline font-medium transition-colors duration-300 hover:text-[#646cff]">Contact</a></li>
+    <header className="fixed left-0 top-0 z-[1000] w-full bg-[#242424] text-white shadow-md">
+      <div className="mx-auto flex h-16 max-w-[1280px] items-stretch justify-between px-8">
+        <a  href="#home" className="flex items-center text-2xl font-bold text-white no-underline">My Portfolio</a>
+        <nav arial-label="Main-navigation">
+        <ul className="flex h-full">
+        {navItems.map(({ label, href }) =>
+              <li key={href} className="h-full">
+                <a href={href} className="flex h-full items-center px-6 font-medium text-white no-underline transition-colors duration-300 hover:bg-[#646cff]">{label}</a>
+              </li>
+            )}
           </ul>
         </nav>
       </div>

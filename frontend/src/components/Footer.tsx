@@ -9,8 +9,8 @@ const Footer = () => {
   return (
     <footer className="mt-auto w-full bg-[#242424] py-8 text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.2)]">
       <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-4 px-8 md:flex-row text-gray-500 ">
-        <p className="m-0 text-sm"> 2026 My Portfolio. </p>
-        <nav aria-label="Social media" className="text-sm items-center"> 
+        <p className="m-0 text-sm"> 2026 Jorge Cummins</p>
+        <nav aria-label="Social media" className="absolute left-1/2 -translate-x-1/2 text-sm"> 
           <ul className="items-center flex gap-6"> 
             {socialLinks.map(({ label, href }) => (
               <li key={label}> 

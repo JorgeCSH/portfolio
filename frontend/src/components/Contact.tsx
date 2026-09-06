@@ -1,41 +1,29 @@
 import { useState } from 'react';
 
-// =========================================================================
-// WHERE TO WRITE: Put your personal contact info and social links here
-// =========================================================================
 const contactConfig = {
-  // Replace with your real email address
-  email: 'your.email@example.com',
+  email: 'jorge.cummins.hs@gmail.com',
 
-  // Replace with your actual social media profiles
   socials: [
     {
       name: 'GitHub',
       handle: 'JorgeCSH',
-      url: 'https://github.com/JorgeCSH', // WHERE TO WRITE: your GitHub link
+      url: 'https://github.com/JorgeCSH', 
       description: 'Check out my code repositories and open-source work.',
       icon: 'github',
     },
     {
       name: 'LinkedIn',
-      handle: 'linkedin.com/in/your-profile',
-      url: 'https://linkedin.com/in/', // WHERE TO WRITE: your LinkedIn link
+      handle: 'linkedin.com/in/jorge-cummins-holger',
+      url: 'https://www.linkedin.com/in/jorge-cummins-holger/', 
       description: 'Connect with me professionally or message me for opportunities.',
       icon: 'linkedin',
     },
     {
-      name: 'Twitter / X',
-      handle: '@your-handle',
-      url: 'https://twitter.com/', // WHERE TO WRITE: your Twitter/X link (or replace with another)
-      description: 'Follow my tech thoughts, project updates, and discussions.',
-      icon: 'twitter',
-    },
-    {
-      name: 'Other Platform',
-      handle: 'Add another link',
-      url: '#', // WHERE TO WRITE: Add any other platform (e.g. YouTube, Discord, Blog)
-      description: '/* Add your additional social media or contact link here */',
-      icon: 'link',
+      name: 'Email',
+      handle: 'jorge.cummins.hs@gmail.com',
+      url: 'mailto:jorge.cummins.hs@gmail.com',
+      description: 'If you dont want to use the "write me an email" section',
+      icon: 'email',
     },
   ],
 };
@@ -52,7 +40,6 @@ export const Contact = ({ onBackToHome }: ContactProps) => {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
-  const [copied, setCopied] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -77,34 +64,14 @@ export const Contact = ({ onBackToHome }: ContactProps) => {
     setSubmitted(true);
   };
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(contactConfig.email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
-  };
-
   return (
     <div className="py-12 px-6 max-w-[1280px] mx-auto w-full flex-grow flex flex-col justify-center">
-      {/* Back button */}
+      {/* back button */}
       {onBackToHome && (
         <div className="mb-8">
-          <button
-            type="button"
-            onClick={onBackToHome}
-            className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors cursor-pointer"
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 19l-7-7m0 0l7-7m-7 7h18"
-              />
+          <button type="button" onClick={onBackToHome} className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors cursor-pointer">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
             <span>Back to Portfolio (Home)</span>
           </button>
@@ -118,31 +85,17 @@ export const Contact = ({ onBackToHome }: ContactProps) => {
         </h1>
         <p className="text-gray-400 text-base sm:text-lg">
           Have an opportunity, question, or just want to say hi? Reach out via
-          email or connect with me through my social profiles.
+          email or connect with me through my socials.
         </p>
       </div>
 
-      {/* Two Column Layout: Left Email / Right Social Media */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* ========================================================================= */}
-        {/* LEFT COLUMN: Write Me an Email                                            */}
-        {/* ========================================================================= */}
         <div className="bg-[#242424] border border-[#38383e] rounded-2xl p-6 sm:p-8 shadow-xl flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-lg bg-[#18181b] border border-[#38383e] flex items-center justify-center text-[#646cff]">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
               </div>
               <div>
@@ -154,61 +107,11 @@ export const Contact = ({ onBackToHome }: ContactProps) => {
             </div>
 
             {/* Direct Email Address Box */}
-            <div className="mb-6 p-4 rounded-xl bg-[#18181b] border border-[#38383e] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <span className="text-xs text-gray-400 block mb-0.5">
-                  Direct Email Address:
-                </span>
-                <span className="text-sm sm:text-base font-mono text-[#a5b4fc] font-medium break-all">
-                  {contactConfig.email}
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={handleCopyEmail}
-                  className="px-3 py-1.5 text-xs font-medium rounded-lg bg-[#242424] hover:bg-[#2e2e2e] border border-[#38383e] text-gray-200 transition-colors cursor-pointer flex items-center gap-1.5"
-                >
-                  {copied ? (
-                    <>
-                      <span className="text-emerald-400">✓</span> Copied!
-                    </>
-                  ) : (
-                    <>
-                      <svg
-                        className="w-3.5 h-3.5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                        />
-                      </svg>
-                      Copy
-                    </>
-                  )}
-                </button>
-                <a
-                  href={`mailto:${contactConfig.email}`}
-                  className="px-3 py-1.5 text-xs font-medium rounded-lg bg-[#646cff] hover:bg-[#535bf2] text-white transition-colors no-underline"
-                >
-                  Mailto
-                </a>
-              </div>
-            </div>
-
-            {/* Email Form */}
+            {/* Email Form TODO: solve problems while sending email*/}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label
-                    htmlFor="contact-name"
-                    className="block text-xs font-medium text-gray-300 mb-1"
-                  >
+                  <label htmlFor="contact-name" className="block text-xs font-medium text-gray-300 mb-1">
                     Your Name
                   </label>
                   <input
@@ -224,10 +127,7 @@ export const Contact = ({ onBackToHome }: ContactProps) => {
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="contact-email"
-                    className="block text-xs font-medium text-gray-300 mb-1"
-                  >
+                  <label htmlFor="contact-email" className="block text-xs font-medium text-gray-300 mb-1">
                     Your Email
                   </label>
                   <input
@@ -244,10 +144,7 @@ export const Contact = ({ onBackToHome }: ContactProps) => {
               </div>
 
               <div>
-                <label
-                  htmlFor="contact-subject"
-                  className="block text-xs font-medium text-gray-300 mb-1"
-                >
+                <label htmlFor="contact-subject" className="block text-xs font-medium text-gray-300 mb-1">
                   Subject
                 </label>
                 <input
@@ -263,10 +160,7 @@ export const Contact = ({ onBackToHome }: ContactProps) => {
               </div>
 
               <div>
-                <label
-                  htmlFor="contact-message"
-                  className="block text-xs font-medium text-gray-300 mb-1"
-                >
+                <label htmlFor="contact-message" className="block text-xs font-medium text-gray-300 mb-1">
                   Message
                 </label>
                 <textarea
@@ -281,23 +175,7 @@ export const Contact = ({ onBackToHome }: ContactProps) => {
                 />
               </div>
 
-              <button
-                type="submit"
-                className="w-full py-3 px-6 rounded-lg bg-[#646cff] hover:bg-[#535bf2] text-white font-semibold transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-[#646cff]/20 cursor-pointer flex items-center justify-center gap-2"
-              >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                  />
-                </svg>
+              <button type="submit" className="w-full py-3 px-6 rounded-lg bg-[#646cff] hover:bg-[#535bf2] text-white font-semibold transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-[#646cff]/20 cursor-pointer flex items-center justify-center gap-2">
                 <span>Send Email</span>
               </button>
             </form>
@@ -305,47 +183,30 @@ export const Contact = ({ onBackToHome }: ContactProps) => {
             {submitted && (
               <div className="mt-4 p-3 rounded-lg bg-emerald-950/40 border border-emerald-600/40 text-emerald-300 text-xs text-center">
                 Opening your email client with your message drafted. If it didn't
-                open, use the direct email box above!
+                open, copy my email from the "Media and Contact" section
               </div>
             )}
           </div>
 
-          <div className="mt-6 pt-4 border-t border-[#38383e] text-xs text-gray-500">
-            {/* Instruction comment for the user */}
-            💡 Where to edit: Replace <code className="text-[#a5b4fc]">contactConfig.email</code> in <code className="text-[#a5b4fc]">src/components/Contact.tsx</code> with your own email address.
-          </div>
         </div>
 
-        {/* ========================================================================= */}
-        {/* RIGHT COLUMN: List of Media (LinkedIn, GitHub, etc.)                     */}
-        {/* ========================================================================= */}
         <div className="bg-[#242424] border border-[#38383e] rounded-2xl p-6 sm:p-8 shadow-xl flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-lg bg-[#18181b] border border-[#38383e] flex items-center justify-center text-[#646cff]">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-                  />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
                 </svg>
               </div>
               <div>
-                <h2 className="text-xl font-bold text-white">My Media & Profiles</h2>
+                <h2 className="text-xl font-bold text-white">Media and Contact</h2>
                 <p className="text-xs text-gray-400">
-                  Find me across the web and social networks
+                  Where to find me
                 </p>
               </div>
             </div>
 
-            {/* Media List Cards */}
+            {/* Media List*/}
             <div className="space-y-4">
               {contactConfig.socials.map((social) => (
                 <a
@@ -373,13 +234,7 @@ export const Contact = ({ onBackToHome }: ContactProps) => {
                       </svg>
                     )}
 
-                    {social.icon === 'twitter' && (
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                      </svg>
-                    )}
-
-                    {social.icon === 'link' && (
+                    {(social.icon === 'email' || social.icon === 'mail') && (
                       <svg
                         className="w-5 h-5"
                         fill="none"
@@ -390,10 +245,11 @@ export const Contact = ({ onBackToHome }: ContactProps) => {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth={2}
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                         />
                       </svg>
                     )}
+
                   </div>
 
                   {/* Info */}
@@ -403,7 +259,7 @@ export const Contact = ({ onBackToHome }: ContactProps) => {
                         {social.name}
                       </h3>
                       <span className="text-xs text-gray-500 group-hover:text-[#646cff] transition-colors flex items-center gap-1">
-                        Visit ↗
+                        {social.icon === 'email' || social.icon === 'mail' ? 'Send ↗' : 'Visit ↗'}
                       </span>
                     </div>
                     <span className="text-xs font-mono text-[#a5b4fc] block mb-1">
@@ -416,11 +272,6 @@ export const Contact = ({ onBackToHome }: ContactProps) => {
                 </a>
               ))}
             </div>
-          </div>
-
-          <div className="mt-6 pt-4 border-t border-[#38383e] text-xs text-gray-500">
-            {/* Instruction comment for the user */}
-            💡 Where to edit: Update the <code className="text-[#a5b4fc]">contactConfig.socials</code> array in <code className="text-[#a5b4fc]">src/components/Contact.tsx</code> with your profiles.
           </div>
         </div>
       </div>

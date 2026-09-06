@@ -1,9 +1,11 @@
+import RevealOnScroll from './RevealOnScroll';
+
 interface HomeProps {
   onNavigate: (hash: string) => void;
 }
+
 export const Home = ({ onNavigate }: HomeProps) => {
-  // React function to trigger the PDF CV download
-  // Make sure your PDF file is named 'cv.pdf' inside the frontend/public folder (or update the path below)
+  // triggers cv download
   const handleDownloadResume = () => {
     const resumeUrl = '/cv.pdf';
     const link = document.createElement('a');
@@ -19,9 +21,8 @@ export const Home = ({ onNavigate }: HomeProps) => {
       id="home"
       className="scroll-mt-20 min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center text-center px-6 py-20"
     >
-      <div className="max-w-3xl mx-auto flex flex-col items-center">
-
-        {/* Main Greeting and Name */}
+      <RevealOnScroll className="max-w-3xl mx-auto flex flex-col items-center">
+        {/* Main Greeting my name */}
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
           Hi There, I'm <p></p>{' '}
           <span className="text-[#646cff]">Jorge Cummins</span>
@@ -34,26 +35,33 @@ export const Home = ({ onNavigate }: HomeProps) => {
 
         {/* Greeting */}
         <p className="text-base sm:text-lg text-gray-400 max-w-2xl mb-10 leading-relaxed">
-          {/* WHERE TO WRITE: Write your short intro and greeting here */}
           Welcome to my portfolio/webpage! I’m a Computer Engineering student passionate about technology, software development, and solving real-world problems across different disciplines. I’m interested in combining computing with other fields to build meaningful and innovative solutions. Take a look around to explore my projects, skills, and work.
         </p>
 
-        {/* Call to Action Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4">
-          {/* 1. Resume: Uses React onClick handler to download the PDF CV */}
           <button
             type="button"
             onClick={handleDownloadResume}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#646cff] hover:bg-[#535bf2] text-white font-semibold transition-all duration-200 shadow-lg shadow-[#646cff]/20 hover:shadow-[#646cff]/40 hover:-translate-y-0.5 cursor-pointer"
             title="Download PDF CV"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+              />
             </svg>
             <span>Resume</span>
           </button>
 
-          {/* 2. Who am I?*/}
+          {/* 2. Who am I?: Jumps to About section */}
           <a
             href="#about"
             onClick={(e) => {
@@ -77,7 +85,7 @@ export const Home = ({ onNavigate }: HomeProps) => {
             Contact Me
           </a>
         </div>
-      </div>
+      </RevealOnScroll>
 
       {/* Scroll down Indicator */}
       <div className="mt-16 sm:mt-24 text-gray-500 animate-bounce">
@@ -88,13 +96,15 @@ export const Home = ({ onNavigate }: HomeProps) => {
             onNavigate('#about');
           }}
           className="flex flex-col items-center gap-1 text-sm text-gray-400 hover:text-white transition-colors duration-200 no-underline"
-          aria-label="Scroll to About section">
+          aria-label="Scroll to About section"
+        >
           <span>Scroll down</span>
           <svg
             className="w-5 h-5"
             fill="none"
             stroke="currentColor"
-            viewBox="0 0 24 24">
+            viewBox="0 0 24 24"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"

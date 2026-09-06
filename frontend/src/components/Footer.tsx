@@ -1,16 +1,26 @@
 const socialLinks = [
   { label: 'GitHub', href: 'https://github.com/JorgeCSH' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jorge-cummins-holger/' },
 ];
 
 export const Footer = () => {
+  const handleDownloadCV = () => {
+    const resumeUrl = '/cv.pdf';
+    const link = document.createElement('a');
+    link.href = resumeUrl;
+    link.setAttribute('download', 'Jorge_Cummins_CV.pdf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <footer className="mt-auto w-full bg-[#242424] py-8 text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.2)] border-t border-[#38383e]/50">
       <div className="relative mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-4 px-6 sm:px-8 md:flex-row text-gray-400">
-        <p className="m-0 text-sm">© 2026 Jorge Cummins</p>
+        <p className="m-0 text-sm">2026 Jorge Cummins</p>
 
         <nav
-          aria-label="Social media"
+          aria-label="Footer navigation and social links"
           className="text-sm md:absolute md:left-1/2 md:-translate-x-1/2"
         >
           <ul className="items-center flex gap-6 list-none m-0 p-0">
@@ -26,6 +36,16 @@ export const Footer = () => {
                 </a>
               </li>
             ))}
+            <li>
+              <button
+                type="button"
+                onClick={handleDownloadCV}
+                className="text-gray-400 hover:text-[#646cff] transition-colors duration-200 no-underline hover:underline text-sm cursor-pointer bg-transparent border-0 p-0 font-normal"
+                title="Download CV"
+              >
+                CV
+              </button>
+            </li>
           </ul>
         </nav>
 

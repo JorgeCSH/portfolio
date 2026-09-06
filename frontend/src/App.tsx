@@ -48,7 +48,7 @@ export function App() {
     [currentView, scrollToElement]
   );
 
-  // Handle browser back/forward buttons
+  // Handle browser  buttons
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
@@ -97,7 +97,7 @@ export function App() {
         </main>
       )}
 
-      {/* Sticky/Bottom Footer */}
+      {/* Bottom Footer */}
       <Footer />
     </div>
   );

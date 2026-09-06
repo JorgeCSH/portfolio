@@ -17,7 +17,7 @@ const initialProjects: Project[] = [
       'Personal portfolio website built with React, TypeScript, and Tailwind CSS. Features smooth scrolling, responsive design, and modular components.',
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     githubUrl: 'https://github.com/JorgeCSH/portfolio',
-    liveUrl: 'http://reddit.com/r/yo_ctm/comments/1pj5qht/ganas_ctm/',
+    liveUrl: 'https://github.com/JorgeCSH/portfolio',
   },
 ];
 

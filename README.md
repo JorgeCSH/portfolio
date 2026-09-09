@@ -7,6 +7,8 @@
 
 My personal portfolio built using React, TypeScript, and Tailwind CSS. It showcases my engineering projects, academic background, technical skills, and contact information.
 
+![home](./repopictures/home_picture.png)
+
 ## Overview
 
 This repository contains the source code for my personal portfolio website. It was created to showcase my projects, academic background, technical skills, and experience.

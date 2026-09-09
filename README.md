@@ -107,4 +107,7 @@ npm run dev
 - **LinkedIn**: [jorge-cummins-holger](https://www.linkedin.com/in/jorge-cummins-holger/)
 - **Email**: [jorge.cummins.hs@gmail.com](mailto:jorge.cummins.hs@gmail.com)
 
+## Final words
+Any comments or suggestions for improving the web app are welcome. They will help me continue improving my skills.
+
 [^1]: Waiting for the necessary credentials to complete the deployment
